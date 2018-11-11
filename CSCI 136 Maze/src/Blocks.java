@@ -3,6 +3,7 @@ import javafx.scene.image.ImageView;
 
 public class Blocks {
 	private Image image = new Image(getTreeImg());
+	
 	public ImageView treeImage1 = new ImageView(image);
 	public ImageView treeImage2 = new ImageView(image);
 	public ImageView treeImage3 = new ImageView(image);
@@ -55,10 +56,9 @@ public class Blocks {
 	public ImageView treeImage50 = new ImageView(image);
 
 	
-	
+	//Tree image file
 	public String getTreeImg() {
 		return "file:src/Tree.png";
-		
 	}
 
 }

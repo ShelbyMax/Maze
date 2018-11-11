@@ -13,28 +13,38 @@ import javafx.stage.Stage;
 public class Driver extends Application {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
-
 	}
+	
+	GridPane myPane;
+	ImageView playerImage;
+	int[][] myArray;
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
-		// TODO Auto-generated method stub
+		
 		Blocks myBlock = new Blocks();
 		Player myPlayer = new Player();
+		Items myItem = new Items();
+		
+		
 		Image myImage = new Image(myPlayer.getPlayerImg());
-		ImageView playerImage = new ImageView(myImage);
+		playerImage = new ImageView(myImage);
+		
+		//Generates a maze by choosing a random number relating to 
+		//one of two files that will be read in to form the maze
 		MazeCreation myMaze = new MazeCreation();
-		int[][] myArray;
 		Random rand = new Random();
 		int randNum = rand.nextInt(((2 - 1) + 1) + 1);
+		myPlayer.getRand(randNum);
 		if (randNum == 1) {
 			myArray = myMaze.array1();
 		} else {
 			myArray = myMaze.array2();
 		}
-		GridPane myPane = new GridPane();
+		
+		//Placing the tree images based on the files
+		myPane = new GridPane();
 		/////////////////////////////////////////
 		if (myArray[0][0] == 1) {
 			myPane.add(myBlock.treeImage1, 0, 0);
@@ -187,19 +197,43 @@ public class Driver extends Application {
 			myPane.add(myBlock.treeImage50, 9, 4);
 		}
 		////////////////////////////////////////////
-
 		
-
-		Group root = new Group(playerImage, myPane);
+		if(randNum == 1) {
+			myPane.add(myItem.fireImg4, 9, 2);
+		}
+		else {
+			myPane.add(myItem.fireImg4, 9, 3);
+		}
+		
+		int randCol1 = rand.nextInt(9);
+		int randRow1 = rand.nextInt(5);
+		int randCol2 = rand.nextInt(9);
+		int randRow2 = rand.nextInt(5);
+		int randCol3 = rand.nextInt(9);
+		int randRow3 = rand.nextInt(5);
+		
+		myPane.add(myItem.fireImg1, randCol1, randRow1);
+		myPane.add(myItem.fireImg2, randCol2, randRow2);
+		myPane.add(myItem.fireImg3, randCol3, randRow3);
+		
+		myPane.add(playerImage, 0, 1);
+		
+		
+		//The group of objects that will be added to the window
+		Group root = new Group(myPane);
 		Scene gameScreen = new Scene(root, Color.BISQUE);
+		
+		//Player Movement Code
 		int x = 0;
 		int y = 0;
 		playerImage.setX(x);
 		playerImage.setY(y);
-		myPlayer.setMovement(x, y, playerImage, primaryStage, gameScreen);
-		myPlayer.playerMovement(gameScreen);
-		primaryStage.setScene(gameScreen);
-		primaryStage.show();
+		myPlayer.setMovement(x, y, playerImage, primaryStage, gameScreen);//Set Variables for the player's movement in "Player.java"
+		myPlayer.playerMovement(gameScreen);//Implements movement from "Player.java"
+		
+		primaryStage.setTitle("Infernape Maze");//Title of window in the window's bar
+		primaryStage.setScene(gameScreen);//Implements the "scene" (objects/background)
+		primaryStage.show();//Shows the window (would probably not appear w/o it)
 
 	}
 }

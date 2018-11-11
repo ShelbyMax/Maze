@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class MazeCreation {
 	private int[][] array1 = new int[5][10];
 	private int[][] array2 = new int[5][10];
-
+	
+	//Reads in a two dimmentional Array from "Maze1.txt"
 	public int[][] array1() throws FileNotFoundException {
 		File myFile = new File("./src/Maze1.txt");
 		Scanner myFileScanner = new Scanner(myFile);
@@ -20,7 +21,8 @@ public class MazeCreation {
 		myFileScanner.close();
 		return array1;
 	}
-
+	
+	//Reads in a two dimmentional Array from "Maze2.txt"
 	public int[][] array2() throws FileNotFoundException {
 		File myFile = new File("./src/Maze2.txt");
 		Scanner myFileScanner = new Scanner(myFile);
