@@ -1,3 +1,5 @@
+//Maze Array made by Nick (Maze files also created by Nick)
+//Player and Items added to pane by Shelby (Images also created/edited by Shelby)
 import java.io.FileNotFoundException;
 import java.util.Random;
 

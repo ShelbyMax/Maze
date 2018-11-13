@@ -1,4 +1,5 @@
-
+//Player.java initially made by Nick
+//Movement code replaced by Shelby to move by gridpane coordinates and to keep from crossing maze border images
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
